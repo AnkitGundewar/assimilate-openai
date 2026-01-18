@@ -1,5 +1,7 @@
 import streamlit as st
-import openai
+from openai import OpenAI
+
+client = OpenAI()
 
 # Get the OpenAI API Key
 api_key = st.sidebar.text_input("OpenAI API Key:", type="password")
@@ -19,17 +21,14 @@ def submit_question(question):
     """This submits a question to the OpenAI API"""
 
     # Setting the OpenAI API key got from the OpenAI dashboard
-    openai.api_key = api_key
 
-    result = openai.Completion.create(
-        prompt=question,
-        temperature=0,
-        max_tokens=300,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        model="text-davinci-002",
-    )["choices"][0]["text"].strip(" \n")
+    result = client.completions.create(prompt=question,
+    temperature=0,
+    max_tokens=300,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0,
+    model="text-davinci-002")["choices"][0]["text"].strip(" \n")
     return result
 
 
