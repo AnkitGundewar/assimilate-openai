@@ -17,7 +17,7 @@ def mkcode(text, language):
     """Convert a comment into code in any language
 
     Example:
-        ./mkcode generate -l python "Calculate the mean distance between an array of points"
+        ./mkcode.py generate -l python "Calculate the mean distance between an array of points"
 
     """
 
